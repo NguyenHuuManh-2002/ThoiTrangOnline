@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="CSS/homeKH.css">
+<title>Trang chủ khách hàng</title>
+</head>
+<body>
+
+	<section class="header">
+		<div class="container">
+			<div class="row py-3 align-items-center">
+				<div class="col-md-3">
+					<a th:href="@{/home(khachhang_id=${khachhang_id})}"> <img
+						src="/image/logo.webp" class="img-fluid" alt="Logo">
+					</a>
+				</div>
+
+				<div class="col-md-4">
+					<div class="d-flex">
+						<input class="form-control me-2" type="search"
+							placeholder="Từ khóa tìm kiếm" id="key">
+						<button class="btn btn-outline-danger" id="timKiemBtn">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+				</div>
+
+				<div class="col-md-5">
+					<div class="row align-items-center">
+						<div class="col-md-6">
+							<div class="row align-items-center">
+								<div class="col-md-3">
+									<div class="fs-4 text-danger">
+										<i class="fa-solid fa-phone-volume"></i>
+									</div>
+								</div>
+								<div class="col-md-9">
+									Tư vấn hỗ trợ<br> <strong class="text-danger">0862083358</strong>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="row align-items-center">
+								<div class="col-md-3">
+									<div class="fs-4 text-danger">
+										<a class="logout" href="/"><i
+											class="fa-solid fa-right-from-bracket"></i></a>
+									</div>
+								</div>
+								<div class="col-md-9">
+									Xin chào <br> <a class="logout" href="/"><strong
+										class="text-danger">Đăng xuất</strong> </a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1">
+							<div class="row align-items-center">
+								<div class="dropdown">
+									<div class="fs-4 text-danger dropdown-toggle custom-dropdown"
+										id="dropdownMenuButton" data-bs-toggle="dropdown"
+										aria-expanded="false">
+										<i class="fa-solid fa-bars"></i>
+									</div>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<li><a class="dropdown-item fs-5" href="/">Thông tin
+												cá nhân</a></li>
+										<li><a class="dropdown-item fs-5" href="/">Địa chỉ
+												nhận hàng</a></li>
+										<li><a class="dropdown-item fs-5" href="/">Đổi mật
+												khẩu</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<section class="menu bg-danger">
+		<div class="container">
+			<div class="row align-items-center">
+				<ul class="nav nav-pills mt-2 mb-2" role="tablist">
+					<li class="nav-item"><a
+						class="nav-link nav1 active fw-bold fs-6" id="home-tab"
+						data-bs-toggle="pill" href="#home">TRANG CHỦ</a></li>
+					<li class="nav-item"><a class="nav-link nav1 fs-6"
+						id="all-tab" data-bs-toggle="pill" href="#all">TẤT CẢ SẢN PHẨM</a></li>
+
+					<li class="nav-item"><a class="nav-link nav1 fs-6"
+						id="danhmuc-tab" data-bs-toggle="pill" href="#danhmuc">DANH
+							MỤC</a></li>
+					<li class="nav-item"><a class="nav-link nav1 fs-6"
+						id="thuonghieu-tab" data-bs-toggle="pill" href="#thuonghieu">THƯƠNG
+							HIỆU</a></li>
+					<li class="nav-item"><a class="nav-link nav1 fs-6"
+						id="gioithieu-tab" data-bs-toggle="pill" href="#gioithieu">GIỚI
+							THIỆU</a></li>
+					<li class="nav-item"><a class="nav-link nav1 fs-6"
+						id="tintuc-tab" data-bs-toggle="pill" href="#tintuc">TIN TỨC</a></li>
+					<li class="nav-item"><a class="nav-link nav1 fs-6"
+						id="tintuc-tab" data-bs-toggle="pill" href="#lienhe">LIÊN HỆ</a></li>
+					<li class="nav-item px-5"><a
+						class="nav-link nav1 fs-6 fw-bold" id="donhang-tab"
+						data-bs-toggle="pill" href="#donhang">ĐƠN HÀNG</a></li>
+				</ul>
+			</div>
+
+		</div>
+	</section>
+
+	<section class="content my-3">
+		<div class="container">
+			<div class="slider">
+				<div id="carouselExampleIndicators" class="carousel slide"
+					data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="0" class="active" aria-current="true"
+							aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="1" aria-label="Slide 2"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="2" aria-label="Slide 3"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="3" aria-label="Slide 4"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="4" aria-label="Slide 5"></button>
+					</div>
+
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="/image/banner/banner1.png" class="d-block w-100"
+								alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="/image/banner/banner2.png" class="d-block w-100"
+								alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="/image/banner/banner3.png" class="d-block w-100"
+								alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="/image/banner/banner4.png" class="d-block w-100"
+								alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="/image/banner/banner5.png" class="d-block w-100"
+								alt="...">
+						</div>
+					</div>
+
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+			<div class="tab-content">
+				<div id="ketQua" class="container mt-3 mb-3"></div>
+				<div id="home" class="container tab-pane active">
+
+					<div class="goi-y mb-3 mt-3">
+						<div class="goi-y-title boder-bottom">
+							<strong class="text-white bg-danger py-1 px-1">Gợi ý cho
+								bạn</strong>
+						</div>
+						<div class="goi-y-list py-3">
+							<div id="goiy" class="row"></div>
+
+						</div>
+						<hr class="text-danger border-2">
+					</div>
+					<div class="new mb-3 mt-3">
+						<div class="new-title boder-bottom">
+							<strong class="text-white bg-danger py-1 px-1">Sản phẩm
+								mới</strong>
+						</div>
+						<div class="new-list py-3">
+							<div id="mathangmoi" class="row"></div>
+
+						</div>
+						<hr class="text-danger border-2">
+					</div>
+					<div class="top mb-3 mt-3">
+						<div class="top-title boder-bottom">
+							<strong class="text-white bg-danger py-1 px-1">Top bán
+								chạy</strong>
+						</div>
+						<div class="top-list py-3">
+							<div id="topbanchay" class="row"></div>
+
+						</div>
+					</div>
+
+
+				</div>
+				<div id="all" class="container tab-pane fade">
+					<div class="all mb-3 mt-3">
+						<div class="all-title boder-bottom">
+							<strong class="text-white bg-danger py-1 px-1">Tất cả
+								sản phẩm</strong>
+						</div>
+						<div class="all-list py-3">
+							<div id="all-mathang" class="row"></div>
+							<div id="pagination-controls"
+								class="d-flex justify-content-center">
+								<button id="prev-page" class="btn btn-danger m-1">Trước</button>
+								<span id="page-info" class="m-1"></span>
+								<button id="next-page" class="btn btn-danger m-1">Sau</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div id="danhmuc" class="container tab-pane fade">
+					<div class="danhmuc mb-3 mt-3">
+						<div class="danhmuc-title boder-bottom">
+							<strong class="text-white bg-danger py-1 px-1">Danh mục
+								sản phẩm</strong>
+						</div>
+						<div class="danhmuc-list py-3">
+							<div id="alldanhmuc" class="row"></div>
+						</div>
+					</div>
+				</div>
+				<div id="thuonghieu" class="container tab-pane fade">
+					<div class="thuonghieu mb-3 mt-3">
+						<div class="thuonghieu-title boder-bottom">
+							<strong class="text-white bg-danger py-1 px-1">Thương
+								hiệu</strong>
+						</div>
+						<div class="thuonghieu-list py-3">
+							<div id="allthuonghieu" class="row"></div>
+						</div>
+					</div>
+				</div>
+				<div id="donhang" class="container tab-pane fade">
+					<div class="row align-items-center donhang">
+						<ul class="nav nav-pills nav-donhang mt-2 mb-2" role="tablist">
+							<li class="nav-item"><a class="nav-link nav2 active fs-6"
+								id="alldonhang-tab" data-bs-toggle="pill" href="#alldonhang">TẤT
+									CẢ ĐƠN HÀNG</a></li>
+							<li class="nav-item"><a class="nav-link nav2 fs-6"
+								id="choxacnhan-tab" data-bs-toggle="pill" href="#choxacnhan">CHỜ
+									XÁC NHẬN</a></li>
+							<li class="nav-item"><a class="nav-link nav2 fs-6"
+								id="danggiao-tab" data-bs-toggle="pill" href="#danggiao">ĐANG
+									GIAO HÀNG</a></li>
+							<li class="nav-item"><a class="nav-link nav2 fs-6"
+								id="hoanthanh-tab" data-bs-toggle="pill" href="#hoanhthanh">HOÀN
+									THÀNH</a></li>
+							<li class="nav-item"><a class="nav-link nav2 fs-6"
+								id="dahuy-tab" data-bs-toggle="pill" href="#dahuy">ĐƠN ĐÃ
+									HỦY</a></li>
+
+						</ul>
+						<hr class="text-danger border-2">
+					</div>
+					<div class="tab-content container">
+
+						<div id="alldonhang" class="container tab-pane active">
+							<div id="showalldonhang"
+								class="row align-items-center justify-content-center"></div>
+						</div>
+						<div id="choxacnhan" class="container tab-pane">
+							<div id="donhang1"
+								class="row align-items-center justify-content-center"></div>
+							<div class="modal fade mt-5" id="DonHangHuy" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Xác nhận
+												hủy đơn hàng</h5>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">Bạn có chắc chắn muốn hủy đơn
+											hàng này không?</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Đóng</button>
+											<button type="button" class="btn btn-danger"
+												onclick="HuyDon()">Hủy đơn</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="danggiao" class="container tab-pane">
+							<div id="donhang2"
+								class="row align-items-center justify-content-center"></div>
+							<div class="modal fade mt-5" id="DonHangHoanThanh" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Xác nhận
+												hoàn thành đơn hàng</h5>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">Bạn chắc chắn đã nhận được đơn
+											hàng?</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Đóng</button>
+											<button type="button" class="btn btn-danger"
+												onclick="HoanThanhDon()">Xác nhận</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="hoanhthanh" class="container tab-pane">
+							<div id="donhang3"
+								class="row align-items-center justify-content-center"></div>
+						</div>
+						<div id="dahuy" class="container tab-pane">
+							<div id="donhang4"
+								class="row align-items-center justify-content-center"></div>
+						</div>
+
+					</div>
+
+				</div>
+				<div id="gioithieu" class="container tab-pane fade"></div>
+				<div id="tintuc" class="container tab-pane fade"></div>
+				<div id="lienhe" class="container tab-pane fade"></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="footer bg-dark text-white py-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<h5>VĂN PHÒNG GIAO DỊCH</h5>
+					<ul class="list-menu">
+						<li class="li_menu"><a href="/" title="Trang chủ">Trang
+								chủ</a></li>
+						<li class="li_menu"><a href="/" title="Tất cả sản phẩm">Tất
+								cả sản phẩm</a></li>
+						<li class="li_menu"><a href="/" title="Danh mục">Danh mục</a></li>
+						<li class="li_menu"><a href="/" title="Thương hiệu">Thương
+								hiệu</a></li>
+						<li class="li_menu"><a href="/" title="Giới thiệu">Giới
+								thiệu</a></li>
+						<li class="li_menu"><a href="/" title="Tin tức">Tin tức</a></li>
+						<li class="li_menu"><a href="/" title="Liên hệ">Liên hệ</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>VỀ CHÚNG TÔI</h5>
+					<ul class="list-menu">
+						<li class="li_menu"><a href="/" title="Trang chủ">Trang
+								chủ</a></li>
+						<li class="li_menu"><a href="/" title="Tất cả sản phẩm">Tất
+								cả sản phẩm</a></li>
+						<li class="li_menu"><a href="/" title="Danh mục">Danh mục</a></li>
+						<li class="li_menu"><a href="/" title="Thương hiệu">Thương
+								hiệu</a></li>
+						<li class="li_menu"><a href="/" title="Giới thiệu">Giới
+								thiệu</a></li>
+						<li class="li_menu"><a href="/" title="Tin tức">Tin tức</a></li>
+						<li class="li_menu"><a href="/" title="Liên hệ">Liên hệ</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>CHĂM SÓC KHÁCH HÀNG</h5>
+					<ul class="list-menu">
+						<li class="li_menu"><a href="/" title="Trang chủ">Trang
+								chủ</a></li>
+						<li class="li_menu"><a href="/" title="Tất cả sản phẩm">Tất
+								cả sản phẩm</a></li>
+						<li class="li_menu"><a href="/" title="Danh mục">Danh mục</a></li>
+						<li class="li_menu"><a href="/" title="Thương hiệu">Thương
+								hiệu</a></li>
+						<li class="li_menu"><a href="/" title="Giới thiệu">Giới
+								thiệu</a></li>
+						<li class="li_menu"><a href="/" title="Tin tức">Tin tức</a></li>
+						<li class="li_menu"><a href="/" title="Liên hệ">Liên hệ</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h5>THEO DÕI CHÚNG TÔI</h5>
+					<ul class="list-menu">
+						<li class="li_menu"><a href="/" title="Trang chủ">Trang
+								chủ</a></li>
+						<li class="li_menu"><a href="/" title="Tất cả sản phẩm">Tất
+								cả sản phẩm</a></li>
+						<li class="li_menu"><a href="/" title="Danh mục">Danh mục</a></li>
+						<li class="li_menu"><a href="/" title="Thương hiệu">Thương
+								hiệu</a></li>
+						<li class="li_menu"><a href="/" title="Giới thiệu">Giới
+								thiệu</a></li>
+						<li class="li_menu"><a href="/" title="Tin tức">Tin tức</a></li>
+						<li class="li_menu"><a href="/" title="Liên hệ">Liên hệ</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>THIÊN ĐƯỜNG MUA SẮM DOLA STYLE</h5>
+					<p class="m-0">Copyright@ 2024 Công ty cố phần thương mại Dola
+						Style</p>
+					<p class="m-0">Chứng nhận ĐKKD số 0137825624 do sở KH&ĐT TP.Hà
+						Nội cấp</p>
+					<p class="m-0">Địa chỉ: Tòa nhà VinHome 123 Thanh Xuân, Hà
+						Đông, Hà Nội</p>
+					<p class="m-0">Điện thoại: 19001888 - Email:
+						thangbaitaikynang@gmail.com</p>
+				</div>
+				<div class="col-md-6">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control"
+							placeholder="Nhập email của bạn" aria-label="Nhập email của bạn"
+							aria-describedby="basic-addon2"> <span
+							class="input-group-text text-white bg-danger" id="basic-addon2">ĐĂNG
+							KÝ</span>
+					</div>
+
+					<div>
+						<span class="box40 bg-white text-primary"> <i
+							class="fa-brands fa-facebook fs-4"></i>
+						</span> <span class="box40 bg-white text-primary"> <i
+							class="fa-brands fa-twitter fs-4"></i>
+						</span> <span class="box40 bg-white text-danger"> <i
+							class="fa-brands fa-google fs-4"></i>
+						</span> <span class="box40 bg-white text-danger"> <i
+							class="fa-brands fa-youtube fs-4"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row justify-content-center">Trang chủ - Tất cả sản
+				phẩm - Danh mục - Thương hiệu - Giới thiệu - Tin tức - Liên hệ</div>
+		</div>
+
+	</section>
+	<div id="khachhangId" th:text="${khachhang_id}" style="display: none;"></div>
+
+	<script>
+		function showXacNhanHuyDon(donhangId, khachhangId) {
+			$('#DonHangHuy').modal('show');
+			$('#DonHangHuy').data('donhangId', donhangId);
+			$('#DonHangHuy').data('khachhangId', khachhangId);
+		}
+
+		function HuyDon() {
+			var donhangId = $('#DonHangHuy').data('donhangId');
+			var khachhangId = $('#DonHangHuy').data('khachhangId');
+			window.location.href = "/huydon?donhangId=" + donhangId
+					+ "&khachhangId=" + khachhangId;
+			$('#DonHangHuy').modal('hide');
+		}
+	</script>
+	<script>
+		function showXacnhanhoanthanh(donhangId, khachhangId) {
+			$('#DonHangHoanThanh').modal('show');
+			$('#DonHangHoanThanh').data('donhangId', donhangId);
+			$('#DonHangHoanThanh').data('khachhangId', khachhangId);
+		}
+
+		function HoanThanhDon() {
+			var donhangId = $('#DonHangHoanThanh').data('donhangId');
+			var khachhangId = $('#DonHangHoanThanh').data('khachhangId');
+			window.location.href = "/hoanthanh?donhangId=" + donhangId
+					+ "&khachhangId=" + khachhangId;
+			$('#DonHangHoanThanh').modal('hide');
+		}
+	</script>
+	<script>
+		document.querySelectorAll('.nav1').forEach(function(element) {
+			element.addEventListener('click', function() {
+				window.scrollTo({
+					top : 0,
+					behavior : 'smooth'
+				});
+			});
+		});
+	</script>
+	<script>
+		document.querySelectorAll('.nav2').forEach(function(element) {
+			element.addEventListener('click', function() {
+				window.scrollTo({
+					top : 350,
+					behavior : 'smooth'
+				});
+			});
+		});
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+
+	<script src="https://kit.fontawesome.com/354a210e1d.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="JS/khachhang/trangchu.js"></script>
+	<script type="text/javascript" src="JS/khachhang/allmathang.js"></script>
+	<script type="text/javascript" src="JS/khachhang/danhmuc.js"></script>
+	<script type="text/javascript" src="JS/khachhang/thuonghieu.js"></script>
+	<script type="text/javascript" src="JS/khachhang/alldonhang.js"></script>
+	<script type="text/javascript" src="JS/khachhang/donhang1.js"></script>
+	<script type="text/javascript" src="JS/khachhang/donhang2.js"></script>
+	<script type="text/javascript" src="JS/khachhang/donhang3.js"></script>
+	<script type="text/javascript" src="JS/khachhang/donhang4.js"></script>
+	<script type="text/javascript" src="JS/khachhang/timkiem.js"></script>
+
+</body>
+</html>

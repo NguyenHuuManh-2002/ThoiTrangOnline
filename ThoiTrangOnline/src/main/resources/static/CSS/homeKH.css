@@ -1,0 +1,155 @@
+
+.box40 {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	display: inline-block;
+}
+/* Thay đổi màu nền và màu chữ của tab đã được chọn */
+.nav-pills .nav-link.active {
+	background-color: white; /* Màu nền khi được chọn */
+	color: #dc3545; /* Màu chữ khi được chọn */
+}
+
+/* Thay đổi màu nền của các tab */
+.nav-pills .nav-link {
+	background-color: #dc3545; /* Màu nền của tab */
+	color: white; /* Màu chữ của tab */
+}
+
+/* Hiệu ứng hover khi di chuột qua tab */
+.nav-pills .nav-link:hover {
+	background-color: gray; /* Màu nền khi hover */
+}
+
+.nav-donhang .nav-link.active {
+	background-color: #dc3545; /* Màu nền khi được chọn */
+	color: white; /* Màu chữ khi được chọn */
+}
+
+/* Thay đổi màu nền của các tab */
+.nav-donhang .nav-link {
+	background-color: white; /* Màu nền của tab */
+	color: black; /* Màu chữ của tab */
+}
+
+/* Hiệu ứng hover khi di chuột qua tab */
+.nav-donhang .nav-link:hover {
+	color: white;
+	background-color: gray; /* Màu nền khi hover */
+}
+
+/* Loại bỏ dấu chấm trước mỗi dòng li */
+.list-menu {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* Loại bỏ dấu gạch ngang dưới chân nội dung li */
+.li_menu {
+	text-decoration: none;
+	padding-bottom: 0;
+}
+
+.li_menu a {
+	text-decoration: none;
+	color: white;
+}
+
+.tab-content a {
+	color: black;
+	text-decoration: none;
+	display: block;
+	border: 1px solid transparent; /* Định nghĩa viền ban đầu */
+	padding: 5px;
+}
+.mathang_ten {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2; /* Điều chỉnh chiều cao dòng nếu cần thiết */
+    max-height: 2.4em; /* 2 dòng * chiều cao dòng (line-height) */
+}
+
+.tab-content a:hover {
+	border-color: red;
+	background-color: #dc3545;
+	color: white;
+}
+
+.logout {
+	text-decoration: none;
+	padding-bottom: 0;
+	color: #dc3545;
+}
+
+.dropdown-menu {
+	min-width: 200px;
+}
+
+.dropdown-item {
+	font-size: 16px;
+	padding: 10px 20px;
+	color: black;
+}
+
+.custom-dropdown::after {
+	display: none; /* Ẩn hình tam giác */
+}
+.custom-dropdown {
+    cursor: pointer; /* Thiết lập con trỏ thành bàn tay */
+}
+.dropdown-item:hover {
+    background-color: #dc3545; /* Đổi màu nền khi di chuột qua */
+    color:white;
+    transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+}
+
+
+/* Đặt chiều cao cố định cho các thẻ div chứa hình ảnh và tên thương hiệu */
+.thuonghieu-card {
+    height: 250px; /* Bạn có thể điều chỉnh chiều cao này */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.thuonghieu-card img {
+    max-height: 150px; /* Đặt chiều cao tối đa cho hình ảnh */
+    object-fit: contain; /* Đảm bảo hình ảnh giữ tỷ lệ */
+}
+
+.thuonghieu_ten {
+    height: 50px; /* Chiều cao cố định cho thẻ h6 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.header {
+    position: sticky;
+    top: 0;
+    background-color: white; /* Điều chỉnh màu nền nếu cần */
+    z-index: 1050; /* Đảm bảo header hiển thị trên cùng */
+}
+
+.menu {
+    position: sticky;
+    top: 88.88px; /* Điều chỉnh top để header không che phủ menu */
+    background-color: red; /* Điều chỉnh màu nền nếu cần */
+    z-index: 1000; /* Đảm bảo menu hiển thị trên cùng */
+}
+.donhang {
+    position: sticky;
+    top: 145.2px;
+    background-color: white; /* Điều chỉnh màu nền nếu cần */
+    z-index: 1000; /* Đảm bảo menu hiển thị trên cùng */
+}
