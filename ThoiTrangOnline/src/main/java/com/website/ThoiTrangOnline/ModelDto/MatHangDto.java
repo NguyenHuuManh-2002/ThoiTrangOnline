@@ -1,5 +1,6 @@
 package com.website.ThoiTrangOnline.ModelDto;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class MatHangDto {
 	private int id;
@@ -10,9 +11,22 @@ public class MatHangDto {
 	private int conlai;
 	private String danhmuc;
 	private String thuonghieu;
+	private MultipartFile imageFile;
+	private String mota;
 	
 	
-	
+	public String getMota() {
+		return mota;
+	}
+	public void setMota(String mota) {
+		this.mota = mota;
+	}
+	public MultipartFile getImageFile() {
+		return imageFile;
+	}
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
+	}
 	public int getConlai() {
 		return conlai;
 	}
