@@ -18,7 +18,7 @@
 <body>
 	<div class="container">
 		<h1 class="text-center my-4 text-primary fw-bold">Tất cả mặt hàng</h1>
-		<a class="btn btn-primary" href="/nhanvien/create">Tạo mặt hàng
+		<a class="btn btn-primary" href="/nhanvien/createmathang">Tạo mặt hàng
 			mới</a>
 		<div class="container">
 			<table class="table text-center align-items-center">
@@ -50,36 +50,21 @@
 							th:src="@{'/image/mathang/' + ${mathang.imgmathang}}" alt=""
 							width="100"></td>
 						
-						<td class="align-middle"><a
+						<td class="align-middle">
+							<a
 							class="btn btn-primary btn-sm d-block mb-3"
-							th:href="@{/nhanvien/edit(id=${mathang.id})}">Edit</a> <a
+							th:href="@{/nhanvien/editmathang(id=${mathang.id})}">Edit
+							</a>
+							<a
 							class="btn btn-danger btn-sm d-block"
-							th:href="@{nhanvien/delete(id=${mathang.id})}"
-							onclick="return confirm('Are you sure?')">Delete></a></td>
+							th:href="@{/nhanvien/deletemathang(id=${mathang.id})}"
+							onclick="return confirm('Are you sure?')">Delete>
+							</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
-			<nav aria-label="Page navigation">
-				<ul class="pagination justify-content-center">
-					<li class="page-item"
-						th:classappend="${productsPage.first ? 'disabled' : ''}"><a
-						class="page-link" th:href="@{/products?page=0}">First</a></li>
-					<li class="page-item"
-						th:classappend="${productsPage.first ? 'disabled' : ''}"><a
-						class="page-link"
-						th:href="@{/products?page=${productsPage.number - 1}}">Previous</a>
-					</li>
-					<li class="page-item"
-						th:classappend="${productsPage.last ? 'disabled' : ''}"><a
-						class="page-link"
-						th:href="@{/products?page=${productsPage.number + 1}}">Next</a></li>
-					<li class="page-item"
-						th:classappend="${productsPage.last ? 'disabled' : ''}"><a
-						class="page-link"
-						th:href="@{/products?page=${productsPage.totalPages - 1}}">Last</a>
-					</li>
-				</ul>
-			</nav>
+
 		</div>
 
 	</div>

@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.website.ThoiTrangOnline.Model.DanhMuc;
 import com.website.ThoiTrangOnline.Model.MatHang;
 import com.website.ThoiTrangOnline.Model.ThuongHieu;
-import com.website.ThoiTrangOnline.ModelDto.MatHangDto;
-import com.website.ThoiTrangOnline.ModelDto.ThuongHieuDto;
+import com.website.ThoiTrangOnline.ModelDto.MatHangCreateDto;
 import com.website.ThoiTrangOnline.Repository.DanhMucRepository;
 import com.website.ThoiTrangOnline.Repository.MatHangRepository;
 import com.website.ThoiTrangOnline.Repository.ThuongHieuRepository;
@@ -50,24 +48,23 @@ public class NhanVienController {
 
 		List<MatHang> mathangs = mathangRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 		model.addAttribute("mathangs", mathangs);
-
 		return "nhanvien/listProduct";
 
 	}
 
-	@GetMapping({ "/createmathang" })
+	@GetMapping("/createmathang")
 	public String showCreatePage(Model model) {
-		MatHangDto mathangDto = new MatHangDto();
-		model.addAttribute("mathangDto", mathangDto);
-		return "/nhanvien/CreateProduct";
+		MatHangCreateDto mathangCreateDto = new MatHangCreateDto();
+		model.addAttribute("mathangCreateDto", mathangCreateDto);
+		return "nhanvien/CreateProduct";
 
 	}
 
 	@PostMapping("/createmathang")
-	public String createProduct(@Valid @ModelAttribute MatHangDto mathangDto, BindingResult result) {
+	public String createProduct(@Valid @ModelAttribute MatHangCreateDto mathangCreateDto, BindingResult result) {
 
-		if (mathangDto.getImgmathang().isEmpty()) {
-			result.addError(new FieldError("mathangDto", "imageFile", "The image file is required"));
+		if (mathangCreateDto.getImageFile().isEmpty()) {
+			result.addError(new FieldError("mathangCreateDto", "imageFile", "The image file is required"));
 		}
 
 		if (result.hasErrors()) {
@@ -75,7 +72,7 @@ public class NhanVienController {
 		}
 
 		// save image file
-		MultipartFile image = mathangDto.getImageFile();
+		MultipartFile image = mathangCreateDto.getImageFile();
 		LocalDate ngaytao = LocalDate.now();
 		String originalFileName = image.getOriginalFilename();
 	    String storageFileName = originalFileName;
@@ -94,19 +91,17 @@ public class NhanVienController {
 		}
 		
 		
-		int danhmucId = Integer.parseInt(mathangDto.getDanhmuc());
-		Optional<DanhMuc> danhmuc = danhmucRepository.findById(danhmucId); 
-		int thuonghieuId = Integer.parseInt(mathangDto.getThuonghieu());
-		Optional<ThuongHieu> thuonghieu = thuonghieuRepository.findById(thuonghieuId); 
+		Optional<DanhMuc> danhmuc = danhmucRepository.findByTen(mathangCreateDto.getDanhmuc()); 
+		Optional<ThuongHieu> thuonghieu = thuonghieuRepository.findByTen(mathangCreateDto.getThuonghieu()); 
 		
 		MatHang mathang = new MatHang();
-		mathang.setTen(mathangDto.getTen());
-		mathang.setGia(mathangDto.getGia());
-		mathang.setSoluong(mathangDto.getConlai());
+		mathang.setTen(mathangCreateDto.getTen());
+		mathang.setGia(mathangCreateDto.getGia());
+		mathang.setSoluong(mathangCreateDto.getConlai());
 		mathang.setDanhmuc(danhmuc.get());
 		mathang.setThuonghieu(thuonghieu.get());
-		mathang.setGia(mathangDto.getGia());
-		mathang.setMota(mathangDto.getMota());
+		mathang.setGia(mathangCreateDto.getGia());
+		mathang.setMota(mathangCreateDto.getMota());
 		mathang.setNgaytao(ngaytao);
 		mathang.setImgmathang(storageFileName);
 
@@ -122,16 +117,16 @@ public class NhanVienController {
 			MatHang mathang = mathangRepository.findById(id).get();
 			model.addAttribute("mathang", mathang);
 
-			MatHangDto mathangDto = new MatHangDto();
-			mathangDto.setTen(mathang.getTen());
-			mathangDto.setGia(mathang.getGia());
-			mathangDto.setConlai(mathang.getSoluong());
-			mathangDto.setDanhmuc(mathang.getDanhmuc().getTen());
-			mathangDto.setThuonghieu(mathang.getThuonghieu().getTen());
-			mathangDto.setGia(mathang.getGia());
-			mathangDto.setMota(mathang.getMota());
+			MatHangCreateDto mathangCreateDto = new MatHangCreateDto();
+			mathangCreateDto.setTen(mathang.getTen());
+			mathangCreateDto.setGia(mathang.getGia());
+			mathangCreateDto.setConlai(mathang.getSoluong());
+			mathangCreateDto.setDanhmuc(mathang.getDanhmuc().getTen());
+			mathangCreateDto.setThuonghieu(mathang.getThuonghieu().getTen());
+			mathangCreateDto.setGia(mathang.getGia());
+			mathangCreateDto.setMota(mathang.getMota());
 
-			model.addAttribute("mathangDto", mathangDto);
+			model.addAttribute("mathangCreateDto", mathangCreateDto);
 			
 		} catch (Exception ex) {
 			System.out.println("Exception:" + ex.getMessage());
@@ -141,7 +136,7 @@ public class NhanVienController {
 	}
 
 	@PostMapping("/editmathang")
-	public String updateProduct(Model model, @RequestParam int id, @Valid @ModelAttribute MatHangDto mathangDto,
+	public String updateProduct(Model model, @RequestParam int id, @Valid @ModelAttribute MatHangCreateDto mathangCreateDto,
 			BindingResult result) {
 		try {
 			MatHang mathang = mathangRepository.findById(id).get();
@@ -150,7 +145,7 @@ public class NhanVienController {
 				return "nhanvien/EditProduct";
 			}
 
-			if (!mathangDto.getImageFile().isEmpty()) {
+			if (!mathangCreateDto.getImageFile().isEmpty()) {
 				// delete old image
 				String uploadDir = "static/image/mathang/";
 				Path oldImagePath = Paths.get(uploadDir + mathang.getImgmathang());
@@ -161,7 +156,7 @@ public class NhanVienController {
 					System.out.println("Exception:" + ex.getMessage());
 				}
 				// save new image file
-				MultipartFile image = mathangDto.getImageFile();
+				MultipartFile image = mathangCreateDto.getImageFile();
 				String originalFileName = image.getOriginalFilename();
 			    String storageFileName = originalFileName;
 				
@@ -171,18 +166,16 @@ public class NhanVienController {
 				}
 				mathang.setImgmathang(storageFileName);
 			}
-			int danhmucId = Integer.parseInt(mathangDto.getDanhmuc());
-			Optional<DanhMuc> danhmuc = danhmucRepository.findById(danhmucId); 
-			int thuonghieuId = Integer.parseInt(mathangDto.getThuonghieu());
-			Optional<ThuongHieu> thuonghieu = thuonghieuRepository.findById(thuonghieuId); 
+			Optional<DanhMuc> danhmuc = danhmucRepository.findByTen(mathangCreateDto.getDanhmuc()); 
+			Optional<ThuongHieu> thuonghieu = thuonghieuRepository.findByTen(mathangCreateDto.getThuonghieu()); 
 	
-			mathang.setTen(mathangDto.getTen());
-			mathang.setGia(mathangDto.getGia());
-			mathang.setSoluong(mathangDto.getConlai());
+			mathang.setTen(mathangCreateDto.getTen());
+			mathang.setGia(mathangCreateDto.getGia());
+			mathang.setSoluong(mathangCreateDto.getConlai());
 			mathang.setDanhmuc(danhmuc.get());
 			mathang.setThuonghieu(thuonghieu.get());
-			mathang.setGia(mathangDto.getGia());
-			mathang.setMota(mathangDto.getMota());
+			mathang.setGia(mathangCreateDto.getGia());
+			mathang.setMota(mathangCreateDto.getMota());
 
 			mathangRepository.save(mathang);
 		} catch (Exception ex) {
