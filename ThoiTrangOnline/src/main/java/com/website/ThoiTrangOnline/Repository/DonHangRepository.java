@@ -19,6 +19,8 @@ public interface DonHangRepository extends JpaRepository<DonHang, Integer> {
 
     List<DonHang> findByKhachhang(KhachHang khachhang);
     
+    List<DonHang> findByTrangthaidh_id(int trangthaidh);
+    
     List<DonHang> findByKhachhangAndTrangthaidh(KhachHang khachhang, TrangThaiDH trangthaidh);
 
     List<DonHang> findByMathangAndTrangthaidh_id(MatHang mathang, int trangthaidh);

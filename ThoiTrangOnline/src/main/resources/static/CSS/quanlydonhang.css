@@ -1,0 +1,16 @@
+.nav-donhang .nav-link.active {
+	background-color: #dc3545; /* Màu nền khi được chọn */
+	color: white; /* Màu chữ khi được chọn */
+}
+
+/* Thay đổi màu nền của các tab */
+.nav-donhang .nav-link {
+	background-color: white; /* Màu nền của tab */
+	color: black; /* Màu chữ của tab */
+}
+
+/* Hiệu ứng hover khi di chuột qua tab */
+.nav-donhang .nav-link:hover {
+	color: white;
+	background-color: gray; /* Màu nền khi hover */
+}

@@ -198,4 +198,8 @@ public class NhanVienController {
 		}
 		return "redirect:/nhanvien/mathang";
 	}
+	@GetMapping("/nhanvien/quanlydonhang")
+	public String quanlyDonHang() {
+		return "nhanvien/quanlydonhang";
+	}
 }
