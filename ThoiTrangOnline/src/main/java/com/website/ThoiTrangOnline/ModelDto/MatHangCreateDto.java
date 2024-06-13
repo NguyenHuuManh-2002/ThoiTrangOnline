@@ -12,7 +12,7 @@ public class MatHangCreateDto {
 	private String ten;
 	
 	private int gia;
-	private int conlai;
+	private int soluong;
 	
 	@NotEmpty(message = "Vui lòng nhập đầy đủ thông tin!")
 	private String danhmuc;
@@ -23,7 +23,7 @@ public class MatHangCreateDto {
 	private MultipartFile imageFile;
 	
 	@Size(min = 10, message = "Yêu cầu nhập tối thiểu 10 kí tự")
-	@Size(max = 2000, message = "Yêu cầu nhập tối đa 1000 kí tự")
+	@Size(max = 1000, message = "Yêu cầu nhập tối đa 1000 kí tự")
 	private String mota;
 
 	public String getTen() {
@@ -42,12 +42,12 @@ public class MatHangCreateDto {
 		this.gia = gia;
 	}
 
-	public int getConlai() {
-		return conlai;
+	public int getSoluong() {
+		return soluong;
 	}
 
-	public void setConlai(int conlai) {
-		this.conlai = conlai;
+	public void setSoluong(int soluong) {
+		this.soluong = soluong;
 	}
 
 	public String getDanhmuc() {

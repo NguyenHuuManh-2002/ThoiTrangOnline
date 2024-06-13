@@ -18,7 +18,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,7 +32,6 @@ import com.website.ThoiTrangOnline.Repository.ThuongHieuRepository;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/nhanvien")
 public class NhanVienController {
 
 	@Autowired
@@ -43,7 +41,7 @@ public class NhanVienController {
 	@Autowired
 	private ThuongHieuRepository thuonghieuRepository;
 	
-	@GetMapping("/mathang")
+	@GetMapping("/nhanvien/mathang")
 	public String showProductList(Model model) {
 
 		List<MatHang> mathangs = mathangRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
@@ -52,15 +50,14 @@ public class NhanVienController {
 
 	}
 
-	@GetMapping("/createmathang")
+	@GetMapping("/nhanvien/createmathang")
 	public String showCreatePage(Model model) {
-		MatHangCreateDto mathangCreateDto = new MatHangCreateDto();
-		model.addAttribute("mathangCreateDto", mathangCreateDto);
+		model.addAttribute("mathangCreateDto", new MatHangCreateDto());
 		return "nhanvien/CreateProduct";
 
 	}
 
-	@PostMapping("/createmathang")
+	@PostMapping("/nhanvien/createmathang")
 	public String createProduct(@Valid @ModelAttribute MatHangCreateDto mathangCreateDto, BindingResult result) {
 
 		if (mathangCreateDto.getImageFile().isEmpty()) {
@@ -97,7 +94,7 @@ public class NhanVienController {
 		MatHang mathang = new MatHang();
 		mathang.setTen(mathangCreateDto.getTen());
 		mathang.setGia(mathangCreateDto.getGia());
-		mathang.setSoluong(mathangCreateDto.getConlai());
+		mathang.setSoluong(mathangCreateDto.getSoluong());
 		mathang.setDanhmuc(danhmuc.get());
 		mathang.setThuonghieu(thuonghieu.get());
 		mathang.setGia(mathangCreateDto.getGia());
@@ -111,7 +108,7 @@ public class NhanVienController {
 
 	}
 
-	@GetMapping("/editmathang")
+	@GetMapping("/nhanvien/editmathang")
 	public String showEditPage(Model model, @RequestParam int id) {
 		try {
 			MatHang mathang = mathangRepository.findById(id).get();
@@ -120,7 +117,7 @@ public class NhanVienController {
 			MatHangCreateDto mathangCreateDto = new MatHangCreateDto();
 			mathangCreateDto.setTen(mathang.getTen());
 			mathangCreateDto.setGia(mathang.getGia());
-			mathangCreateDto.setConlai(mathang.getSoluong());
+			mathangCreateDto.setSoluong(mathang.getSoluong());
 			mathangCreateDto.setDanhmuc(mathang.getDanhmuc().getTen());
 			mathangCreateDto.setThuonghieu(mathang.getThuonghieu().getTen());
 			mathangCreateDto.setGia(mathang.getGia());
@@ -135,7 +132,7 @@ public class NhanVienController {
 		return "nhanvien/EditProduct";
 	}
 
-	@PostMapping("/editmathang")
+	@PostMapping("/nhanvien/editmathang")
 	public String updateProduct(Model model, @RequestParam int id, @Valid @ModelAttribute MatHangCreateDto mathangCreateDto,
 			BindingResult result) {
 		try {
@@ -171,7 +168,7 @@ public class NhanVienController {
 	
 			mathang.setTen(mathangCreateDto.getTen());
 			mathang.setGia(mathangCreateDto.getGia());
-			mathang.setSoluong(mathangCreateDto.getConlai());
+			mathang.setSoluong(mathangCreateDto.getSoluong());
 			mathang.setDanhmuc(danhmuc.get());
 			mathang.setThuonghieu(thuonghieu.get());
 			mathang.setGia(mathangCreateDto.getGia());
@@ -184,7 +181,7 @@ public class NhanVienController {
 		return "redirect:/nhanvien/mathang";
 	}
 
-	@GetMapping("/deletemathang")
+	@GetMapping("/nhanvien/deletemathang")
 	public String deleteProduct(@RequestParam int id) {
 		try {
 			MatHang mathang = mathangRepository.findById(id).get();

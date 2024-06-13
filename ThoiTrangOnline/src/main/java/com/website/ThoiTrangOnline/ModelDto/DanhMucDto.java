@@ -4,7 +4,21 @@ public class DanhMucDto {
 	private int id;
 	private String ten;
 	private String imgdanhmuc;
+	private int tongsoluong;
+	private int tongdoanhthu;
 	
+	public int getTongsoluong() {
+		return tongsoluong;
+	}
+	public void setTongsoluong(int tongsoluong) {
+		this.tongsoluong = tongsoluong;
+	}
+	public int getTongdoanhthu() {
+		return tongdoanhthu;
+	}
+	public void setTongdoanhthu(int tongdoanhthu) {
+		this.tongdoanhthu = tongdoanhthu;
+	}
 	public int getId() {
 		return id;
 	}

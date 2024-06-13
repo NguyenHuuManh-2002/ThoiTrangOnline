@@ -48,7 +48,7 @@ public class LoginController {
 		if(!taikhoanfind.isEmpty() && taikhoanloginDto.getMatkhau().equals(taikhoanfind.get().getMatkhau())) {
 			model.addAttribute("taikhoan", taikhoanfind.get());
 			if(taikhoanfind.get().getLoai().equals("quanly")) {
-				return "quanly/trangchuquanly";
+				return "quanly/home";
 			}
 			else if(taikhoanfind.get().getLoai().equals("nhanvien")) {
 				return "nhanvien/trangchunhanvien";

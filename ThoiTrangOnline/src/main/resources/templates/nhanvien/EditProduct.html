@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 mx-auto rounded border p-4 m-4">
-				<h2 class="text-center mb-5">Edit Product</h2>
+				<h2 class="text-center mb-5">Chỉnh sửa mặt hàng</h2>
 				<form method="post" enctype="multipart/form-data"
 					th:object="${mathangCreateDto}">
 
@@ -45,7 +45,7 @@
 						<label class="col-sm-4 col-form-label">Số lượng</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="number" min="1"
-								th:field="${mathangCreateDto.conlai}">
+								th:field="${mathangCreateDto.soluong}">
 						</div>
 					</div>
 					<div class="row mb-3">
@@ -57,7 +57,8 @@
 								<option value='Balo & Túi Ví Nam'>Balo & Túi Ví Nam</option>
 								<option value='Giày Dép Nam'>Giày Dép Nam</option>
 								<option value='Giày Dép Nữ'>Giày Dép Nữ</option>
-								<option value='Phụ Kiện & Trang Sức Nữ'>Phụ Kiện & Trang Sức Nữ</option>
+								<option value='Phụ Kiện & Trang Sức Nữ'>Phụ Kiện &
+									Trang Sức Nữ</option>
 								<option value='Thời Trang Nam'>Thời Trang Nam</option>
 								<option value='Thời Trang Nữ'>Thời Trang Nữ</option>
 								<option value='Thời Trang Trẻ Em'>Thời Trang Trẻ Em</option>
@@ -114,6 +115,14 @@
 								th:errorclass="text-danger" th:errors="${mathangCreateDto.mota}"></p>
 						</div>
 					</div>
+
+					<div class="row mb-3">
+						<div class="offset-sm-4 col-sm-8">
+							<img th:src="@{'/image/mathang/' + ${mathang.imgmathang}}"
+								alt="..." width="150">
+						</div>
+					</div>
+
 					<div class="row mb-3">
 						<label class="col-sm-4 col-form-label">Hình ảnh</label>
 						<div class="col-sm-8">
@@ -138,7 +147,8 @@
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 						<div class="col-sm-4 d-grid">
-							<a class="btn btn-outline-primary" href="/product" role="button">Cancel</a>
+							<a class="btn btn-outline-primary" href="/nhanvien/mathang"
+								role="button">Cancel</a>
 						</div>
 					</div>
 				</form>

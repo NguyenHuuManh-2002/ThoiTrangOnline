@@ -13,7 +13,29 @@ public class MatHangDto {
 	private String thuonghieu;
 	private String mota;
 	
+	private double soluongtb;
+	private int tongsoluong;
+	private int tongdoanhthu;
 	
+	
+	public double getSoluongtb() {
+		return soluongtb;
+	}
+	public void setSoluongtb(double soluongtb) {
+		this.soluongtb = soluongtb;
+	}
+	public int getTongsoluong() {
+		return tongsoluong;
+	}
+	public void setTongsoluong(int tongsoluong) {
+		this.tongsoluong = tongsoluong;
+	}
+	public int getTongdoanhthu() {
+		return tongdoanhthu;
+	}
+	public void setTongdoanhthu(int tongdoanhthu) {
+		this.tongdoanhthu = tongdoanhthu;
+	}
 	public String getMota() {
 		return mota;
 	}
