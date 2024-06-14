@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const itemsPerPage = 12; // Hiển thị 12 mặt hàng mỗi trang
 	let allmathang = document.getElementById('all-mathang');
 	var khachhangId = document.getElementById('khachhangId').textContent;
-	
+
 	const renderAllMathang = () => {
 		const start = (currentPage - 1) * itemsPerPage;
 		const end = start + itemsPerPage;
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 
 	const changePage = (direction) => {
-		window.scrollTo({top: 400, behavior: 'smooth'});
+		window.scrollTo({ top: 400, behavior: 'smooth' });
 		if (direction === 'prev' && currentPage > 1) {
 			currentPage--;
 		} else if (direction === 'next' && currentPage * itemsPerPage < mathangDtos.length) {
