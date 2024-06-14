@@ -35,6 +35,7 @@ public class NhanVienRestController {
 			
 			DonHangDto donhangDto = new DonHangDto();
 			donhangDto.setId(donhang.getId());
+			donhangDto.setId_khachhang(donhang.getKhachhang().getId());
 			donhangDto.setId_mathang(donhang.getMathang().getId());
 			donhangDto.setImgmathang(donhang.getMathang().getImgmathang());
 			donhangDto.setTen(donhang.getMathang().getTen());
@@ -62,6 +63,7 @@ public class NhanVienRestController {
 			
 			DonHangDto donhangDto = new DonHangDto();
 			donhangDto.setId(donhang.getId());
+			donhangDto.setId_khachhang(donhang.getKhachhang().getId());
 			donhangDto.setId_mathang(donhang.getMathang().getId());
 			donhangDto.setImgmathang(donhang.getMathang().getImgmathang());
 			donhangDto.setTen(donhang.getMathang().getTen());
@@ -89,6 +91,7 @@ public class NhanVienRestController {
 			
 			DonHangDto donhangDto = new DonHangDto();
 			donhangDto.setId(donhang.getId());
+			donhangDto.setId_khachhang(donhang.getKhachhang().getId());
 			donhangDto.setId_mathang(donhang.getMathang().getId());
 			donhangDto.setImgmathang(donhang.getMathang().getImgmathang());
 			donhangDto.setTen(donhang.getMathang().getTen());
@@ -117,6 +120,7 @@ public class NhanVienRestController {
 			
 			DonHangDto donhangDto = new DonHangDto();
 			donhangDto.setId(donhang.getId());
+			donhangDto.setId_khachhang(donhang.getKhachhang().getId());
 			donhangDto.setId_mathang(donhang.getMathang().getId());
 			donhangDto.setImgmathang(donhang.getMathang().getImgmathang());
 			donhangDto.setTen(donhang.getMathang().getTen());
@@ -144,6 +148,7 @@ public class NhanVienRestController {
 			
 			DonHangDto donhangDto = new DonHangDto();
 			donhangDto.setId(donhang.getId());
+			donhangDto.setId_khachhang(donhang.getKhachhang().getId());
 			donhangDto.setId_mathang(donhang.getMathang().getId());
 			donhangDto.setImgmathang(donhang.getMathang().getImgmathang());
 			donhangDto.setTen(donhang.getMathang().getTen());

@@ -9,17 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
 				<div class="col-md-2 mt-2 mb-2">
 					<img alt="${donhangDto.ten}" src="/image/mathang/${donhangDto.imgmathang}" class="img-fluid">
 				</div>
-				<div class="col-md-2 mt-2 mb-3">
+				<div class="col-md-2 mt-2 mb-3 text-start">
 					<h7> ${donhangDto.ten} </h7>
 				</div>
-				<div class="col-md-2 mt-2 mb-3">
-					<h6>Số lượng: ${donhangDto.soluong} </h6>
+				<div class="col-md-1 mt-2 mb-3">
+					<h6>Số lượng</h6>
+					<h6>${donhangDto.soluong} </h6>
+				</div>
+				<div class="col-md-1 mt-2 mb-3">
+					<h6>Giá</h6>
+					<h6>${donhangDto.gia} </h6>
+				</div>
+				<div class="col-md-1 mt-2 mb-3">
+					<h6>Tổng tiền</h6>
+					<h6>${donhangDto.tongtien} </h6>
+				</div>
+				<div class="col-md-1 mt-2 mb-3">
+					<h6>Mã KH</h6>
+					<h6>${donhangDto.id_khachhang} </h6>
 				</div>
 				<div class="col-md-2 mt-2 mb-3">
-					<h6>Giá: ${donhangDto.gia} </h6>
-				</div>
-				<div class="col-md-2 mt-2 mb-3">
-					<h6>Tổng tiền: ${donhangDto.tongtien} </h6>
+					<h6>Ngày đặt</h6>
+					<h6>${donhangDto.ngaydat} </h6>
 				</div>
 				
 				<div class="col-md-2 mt-2 mb-3">
@@ -32,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 
 	const fetchDonhang3 = () => {
-		fetch(`nhanvien/donhang3`)
+		fetch(`/nhanvien/donhang3`)
 			.then(response => response.json())
 			.then(data => {
 				donhangDtos = data;

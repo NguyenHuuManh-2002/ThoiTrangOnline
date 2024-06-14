@@ -1,14 +1,18 @@
 package com.website.ThoiTrangOnline.Controller;
 
+
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.PublicKey;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -29,6 +33,7 @@ import com.website.ThoiTrangOnline.Repository.DanhMucRepository;
 import com.website.ThoiTrangOnline.Repository.MatHangRepository;
 import com.website.ThoiTrangOnline.Repository.ThuongHieuRepository;
 
+import ch.qos.logback.core.util.FileUtil;
 import jakarta.validation.Valid;
 
 @Controller
@@ -46,8 +51,12 @@ public class NhanVienController {
 
 		List<MatHang> mathangs = mathangRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 		model.addAttribute("mathangs", mathangs);
-		return "nhanvien/listProduct";
-
+		return "nhanvien/listProduct";	
+	
+	}
+	@GetMapping("/nhanvien/trangchunhanvien")
+	public String showHome() {
+		return "nhanvien/trangchunhanvien";
 	}
 
 	@GetMapping("/nhanvien/createmathang")
@@ -58,7 +67,7 @@ public class NhanVienController {
 	}
 
 	@PostMapping("/nhanvien/createmathang")
-	public String createProduct(@Valid @ModelAttribute MatHangCreateDto mathangCreateDto, BindingResult result) {
+	public String createProduct(@Valid @ModelAttribute("mathangCreateDto") MatHangCreateDto mathangCreateDto, BindingResult result) {
 
 		if (mathangCreateDto.getImageFile().isEmpty()) {
 			result.addError(new FieldError("mathangCreateDto", "imageFile", "The image file is required"));
@@ -71,18 +80,21 @@ public class NhanVienController {
 		// save image file
 		MultipartFile image = mathangCreateDto.getImageFile();
 		LocalDate ngaytao = LocalDate.now();
-		String originalFileName = image.getOriginalFilename();
-	    String storageFileName = originalFileName;
+		
+		Date createdAt = new Date();
+		String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
 
 		try {
-			String uploadDir = "static/image/mathang/";
-			Path uploadPath = Paths.get(uploadDir);
-			if (!Files.exists(uploadPath)) {
-				Files.createDirectories(uploadPath);
-			}
-			try (InputStream inputStream = image.getInputStream()) {
-				Files.copy(inputStream, Paths.get(uploadDir + storageFileName), StandardCopyOption.REPLACE_EXISTING);
-			}
+			String uploadDir = "src/main/resources/static/image/mathang/";
+			/*
+			 * Path uploadPath = Paths.get(uploadDir); if (!Files.exists(uploadPath)) {
+			 * Files.createDirectories(uploadPath); }
+			 */
+			
+			  try (InputStream inputStream = image.getInputStream()) { 
+			  Files.copy(inputStream, Paths.get(uploadDir + storageFileName),
+			  StandardCopyOption.REPLACE_EXISTING); } 
+			 
 		} catch (Exception ex) {
 			System.out.println("Exception: " + ex.getMessage());
 		}
@@ -133,7 +145,7 @@ public class NhanVienController {
 	}
 
 	@PostMapping("/nhanvien/editmathang")
-	public String updateProduct(Model model, @RequestParam int id, @Valid @ModelAttribute MatHangCreateDto mathangCreateDto,
+	public String updateProduct(Model model, @RequestParam int id, @Valid @ModelAttribute("mathangCreateDto") MatHangCreateDto mathangCreateDto,
 			BindingResult result) {
 		try {
 			MatHang mathang = mathangRepository.findById(id).get();
@@ -144,7 +156,7 @@ public class NhanVienController {
 
 			if (!mathangCreateDto.getImageFile().isEmpty()) {
 				// delete old image
-				String uploadDir = "static/image/mathang/";
+				String uploadDir = "src/main/resources/static/image/mathang/";
 				Path oldImagePath = Paths.get(uploadDir + mathang.getImgmathang());
 
 				try {
@@ -154,8 +166,9 @@ public class NhanVienController {
 				}
 				// save new image file
 				MultipartFile image = mathangCreateDto.getImageFile();
-				String originalFileName = image.getOriginalFilename();
-			    String storageFileName = originalFileName;
+				Date createdAt = new Date();
+				String storageFileName = createdAt.getTime() + "_" + image.getOriginalFilename();
+
 				
 				try (InputStream inputStream = image.getInputStream()) {
 					Files.copy(inputStream, Paths.get(uploadDir + storageFileName),
@@ -186,7 +199,7 @@ public class NhanVienController {
 		try {
 			MatHang mathang = mathangRepository.findById(id).get();
 
-			Path imagePath = Paths.get("static/image/mathang" + mathang.getImgmathang());
+			Path imagePath = Paths.get("src/main/resources/static/image/mathang/" + mathang.getImgmathang());
 			try {
 				Files.delete(imagePath);
 			} catch (Exception ex) {

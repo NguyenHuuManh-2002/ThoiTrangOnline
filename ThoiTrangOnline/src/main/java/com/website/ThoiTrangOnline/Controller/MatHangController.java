@@ -242,5 +242,18 @@ public class MatHangController {
 		
 		return "redirect:/home?khachhang_id=" + khachhang_id; 
 	}
+	@GetMapping("/xacnhan")
+	public String HoanThanhDonHang(@RequestParam String donhangId) {
+		
+		int donhang_id = Integer.parseInt(donhangId);
+		
+		Optional<DonHang> donhangfind = donhangRepository.findById(donhang_id);
+		DonHang donhang = donhangfind.get();
+		Optional<TrangThaiDH> trangthaidonhang = trangthaidhRepository.findById(2);
+		donhang.setTrangthaidh(trangthaidonhang.get());
+		donhangRepository.save(donhang);
+		
+		return "redirect:/nhanvien/quanlydonhang";
+	}
 }
 
